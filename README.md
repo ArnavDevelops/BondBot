@@ -1,2 +1,1 @@
-# BondBot
- The Best Marriage bot for your server!
+# Didn't do this yet sorry
