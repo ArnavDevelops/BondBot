@@ -39,7 +39,6 @@ module.exports = {
     //Status | Main function
     async function pickPresence() {
       const option = Math.floor(Math.random() * statusArray.length);
-      client.user.setStatus("dnd");
       try {
         await client.user.setPresence({
           activities: [
