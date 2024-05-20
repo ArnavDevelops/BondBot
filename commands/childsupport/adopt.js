@@ -86,7 +86,7 @@ module.exports = {
                     await confirmation.update({ content: ``, embeds: [embed], components: [] })
                 }
             } catch (err) {
-                console.log(err)
+                return;
             }
         } else {
             const embed = new EmbedBuilder()

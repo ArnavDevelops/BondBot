@@ -43,7 +43,7 @@ module.exports = {
       try {
         await button.execute(interaction, client);
       } catch (err) {
-        console.log(err);
+        return;;
       }
     }
 

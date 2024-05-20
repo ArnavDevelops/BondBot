@@ -3,7 +3,7 @@ const { Schema, model, SchemaTypes } = require("mongoose");
 const familySchema = new Schema({
     ownerId: String,
     name: String,
-    familyManagers: [],
+    familyManagers: { type: [{id: String}], default: [] },
     incest: Boolean,
     status: String,
     engagement: Boolean,
