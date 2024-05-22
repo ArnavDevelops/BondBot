@@ -116,7 +116,6 @@ module.exports = {
                         .addFields([
                             { name: "Owner", value: `<@${data.ownerId}> (${data.ownerId})` },
                             { name: "Family managers", value: familyManagersContent },
-                            { name: "Status", value: `The status of this family is "${data.status || "None"}"` },
                             { name: "Disown", value: `This family has set disown to ${data.disown}` },
                             { name: "Incest", value: `This family has set incest to ${data.incest}` },
                             { name: "Engagement", value: engagementValue }
@@ -131,7 +130,6 @@ module.exports = {
                                 if (data) {
                                     membersContent = ""
                                     const members = data.familyMembers.map(member => `<@${member.id}>`).join('\n ')
-                                    console.log(members)
                                     if (members.length >= 1) {
                                         membersContent += members
                                     } else if (members.length == 0) {

@@ -54,7 +54,7 @@ module.exports = {
                         data.familyMembers.pull({ id: interaction.user.id })
                         await data.save()
         
-                        await mainSchema.findOneAndUpdate({ userId: interaction.user.id, loveId: mainData.loveId }, { parentId: "None", familyId: null, status: "None" })
+                        await mainSchema.findOneAndUpdate({ userId: interaction.user.id }, { parentId: "None", familyId: null, status: "None" })
         
                         const embed = new EmbedBuilder()
                             .setColor("Red")
