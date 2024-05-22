@@ -6,7 +6,6 @@ const familySchema = new Schema({
     name: String,
     familyManagers: { type: [{id: String}], default: [] },
     incest: Boolean,
-    status: String,
     engagement: Boolean,
     disown: Boolean,
     familyMembers:{ type: [{id: String}], default: [] },

@@ -60,7 +60,6 @@ module.exports = {
                     name: name,
                     familyManagers: [],
                     incest: false,
-                    status: "Normal",
                     engagement: true,
                     disown: true,
                     familyMembers: [],
