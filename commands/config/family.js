@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, ComponentType } = require("discord.js");
 const familySchema = require("../../schemas/familySchema.js")
 const mainSchema = require("../../schemas/mainSchema.js");
 
@@ -35,14 +35,15 @@ module.exports = {
             const name = options.getString("name")
 
             const data = await familySchema.findOne({
+                guildId: guild.id,
                 $or: [
                     { ownerId: interaction.user.id },
                     { familyMembers: { $elemMatch: { id: interaction.user.id } } }
                 ]
             })
-            const userData = await mainSchema.findOne({ userId: interaction.user.id, familyId: data?._id });
+            const userData = await mainSchema.findOne({ guildId: guild.id, userId: interaction.user.id });
 
-            if (data || userData.familyId !== null) {
+            if (data && userData.familyId !== null) {
                 const embed = new EmbedBuilder()
                     .setColor("Red")
                     .setDescription("***:warning: You cannot create a family as you're already in a family.***")
@@ -54,6 +55,7 @@ module.exports = {
                 await interaction.reply({ embeds: [embed], ephemeral: true });
 
                 new familySchema({
+                    guildId: guild.id,
                     ownerId: interaction.user.id,
                     name: name,
                     familyManagers: [],
@@ -64,6 +66,7 @@ module.exports = {
                     familyMembers: [],
                 }).save().then(s => {
                     new mainSchema({
+                        guildId: guild.id,
                         userId: interaction.user.id,
                         familyId: s._id,
                         status: "None",
@@ -74,6 +77,7 @@ module.exports = {
             }
         } else if (options.getSubcommand() == "info") {
             const data = await familySchema.findOne({
+                guildId: guild.id,
                 $or: [
                     { ownerId: interaction.user.id },
                     { familyMembers: { $elemMatch: { id: interaction.user.id } } }
@@ -118,21 +122,50 @@ module.exports = {
                             { name: "Incest", value: `This family has set incest to ${data.incest}` },
                             { name: "Engagement", value: engagementValue }
                         ])
-                    return await interaction.reply({ embeds: [embed], components: [row] })
+                    const msg = await interaction.reply({ embeds: [embed], components: [row] })
+                    try {
+                        const collector = await msg.createMessageComponentCollector({ componentType: ComponentType.Button })
+
+
+                        collector.on("collect", async (interaction) => {
+                            if (interaction.customId == "familyInfoMembers") {
+                                if (data) {
+                                    membersContent = ""
+                                    const members = data.familyMembers.map(member => `<@${member.id}>`).join('\n ')
+                                    console.log(members)
+                                    if (members.length >= 1) {
+                                        membersContent += members
+                                    } else if (members.length == 0) {
+                                        membersContent += "No members.";
+                                    }
+                                    const membersSize = data.familyMembers.length
+
+                                    const embed = new EmbedBuilder()
+                                        .setColor("Random")
+                                        .setTitle(`Members in the family! [${membersSize}]`)
+                                        .setDescription(members || "No members.")
+                                    return await interaction.reply({ embeds: [embed], ephemeral: true })
+                                }
+                            }
+                        })
+                    } catch (err) {
+                        return;
+                    }
                 } catch (err) {
-                   return;
+                    return;
                 }
             }
         } else if (options.getSubcommand() === "delete") {
             const data = await familySchema.findOne({
+                guildId: guild.id,
                 $or: [
                     { ownerId: interaction.user.id },
                     { familyManagers: { $elemMatch: { id: interaction.user.id } } }
                 ]
             })
-            const mainData = await mainSchema.find({ familyId: data._id })
+            const mainData = await mainSchema.findOne({ guildId: guild.id, familyId: data._id })
 
-            if(!data || !mainData) {
+            if (!data || !mainData) {
                 const embed = new EmbedBuilder()
                     .setColor("Red")
                     .setDescription("***Either you're not in a family, or you're not a manager in the family!***")
@@ -160,8 +193,8 @@ module.exports = {
                     await mainSchema.findOneAndUpdate({ familyId: m.familyId }, { familyId: null })
                 })
                 if (confirmation.customId == "deleteYes") {
-                    if(data) {
-                        await familySchema.findOneAndDelete({                 
+                    if (data) {
+                        await familySchema.findOneAndDelete({
                             $or: [
                                 { ownerId: interaction.user.id },
                                 { familyManagers: { $elemMatch: { id: interaction.user.id } } }
@@ -171,7 +204,7 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:white_check_mark: Successfully deleted the family***")
-                        await confirmation.update({ embeds: [embed], components: []})
+                        await confirmation.update({ embeds: [embed], components: [] })
                     }
                 } else if (confirmation.customId == "deleteNo") {
                     const embed = new EmbedBuilder()

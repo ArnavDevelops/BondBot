@@ -10,26 +10,31 @@ module.exports = {
   */
   async execute(interaction, client) {
     //Application Commands
-    if (interaction.isChatInputCommand()) {
-      const { commands } = client;
-      const { commandName } = interaction;
-      const command = commands.get(commandName);
-      if (!command) return;
 
-      try {
-        await command.execute(interaction, client);
-      } catch (error) {
-        await interaction.deferReply({ ephemeral: true });
-        const commandErrorEmbed = new EmbedBuilder()
-          .setColor("Red")
-          .setDescription(
-            `***:warning: Something went wrong while executing this command***`
-          );
-        await interaction.followUp({
-          embeds: [commandErrorEmbed],
-          ephemeral: true,
-        });
-        console.log(error)
+    if (interaction.isChatInputCommand()) {
+      if(interaction.guild.id == client.guilds.cache.get("1173329837046370354").id) {
+        return await interaction.reply({ content: "Too negro to use this command. Use it once it's officially released", ephemeral: true})
+      } else {
+        const { commands } = client;
+        const { commandName } = interaction;
+        const command = commands.get(commandName);
+        if (!command) return;
+
+        try {
+          await command.execute(interaction, client);
+        } catch (error) {
+          await interaction.deferReply({ ephemeral: true });
+          const commandErrorEmbed = new EmbedBuilder()
+            .setColor("Red")
+            .setDescription(
+              `***:warning: Something went wrong while executing this command***`
+            );
+          await interaction.followUp({
+            embeds: [commandErrorEmbed],
+            ephemeral: true,
+          });
+          console.log(error)
+        }
       }
     }
 

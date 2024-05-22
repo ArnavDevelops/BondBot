@@ -1,6 +1,7 @@
-const { Schema, model, SchemaTypes } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const familySchema = new Schema({
+    guildId: String,
     ownerId: String,
     name: String,
     familyManagers: { type: [{id: String}], default: [] },

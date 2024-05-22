@@ -18,18 +18,20 @@ module.exports = {
         const user = guild.members.cache.get(options.getUser("user").id)
 
         const familyData = await familySchema.findOne({
+            guildId: guild.id,
             $or: [
                 { ownerId: user.id },
                 { familyMembers: { $elemMatch: { id: user.id } } }
             ]
         })
         const AdopterfamilyData = await familySchema.findOne({
+            guildId: interaction.guild.id,
             $or: [
                 { ownerId: interaction.user.id },
                 { familyMembers: { $elemMatch: { id: interaction.user.id } } }
             ]
         })
-        const mainData = await mainSchema.findOne({ userId: user.id, familyId: familyData?._id })
+        const mainData = await mainSchema.findOne({ guildId: guild.id, userId: user.id, familyId: familyData?._id })
 
         if (!familyData && AdopterfamilyData) {
             const yes = new ButtonBuilder()

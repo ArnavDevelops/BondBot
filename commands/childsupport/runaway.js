@@ -11,12 +11,13 @@ module.exports = {
         const { guild } = interaction;
 
         const data = await familySchema.findOne({
+            guildId: guild.id,
             $or: [
                 { ownerId: interaction.user.id },
                 { familyMembers: { $elemMatch: { id: interaction.user.id } } }
             ]
         })
-        const mainData = await mainSchema.findOne({ userId: interaction.user.id, familyId: data?._id })
+        const mainData = await mainSchema.findOne({ guildId: guild.id, userId: interaction.user.id, familyId: data?._id })
         if (!data || !mainData) {
             const embed = new EmbedBuilder()
                 .setColor('Red')
