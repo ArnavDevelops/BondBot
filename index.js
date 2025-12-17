@@ -5,7 +5,7 @@ const process = require(`node:process`);
 require("dotenv").config();
 const mongoToken = process.env.mongoToken;
 const Token = process.env.Token;
-const { Client, Collection, GatewayIntentBits,DefaultWebSocketManagerOptions: { identifyProperties }  } = require("discord.js");
+const { Client, Collection, GatewayIntentBits, DefaultWebSocketManagerOptions: { identifyProperties }  } = require("discord.js");
 identifyProperties.browser = "Discord Android"
 const { connect } = require("mongoose");
 const { readdirSync } = require("fs");

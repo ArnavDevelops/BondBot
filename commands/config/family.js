@@ -47,12 +47,12 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setColor("Red")
                     .setDescription("***:warning: You cannot create a family as you're already in a family.***")
-                return await interaction.reply({ embeds: [embed], ephemeral: true });
+                return await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
             } else {
                 const embed = new EmbedBuilder()
                     .setColor("Green")
                     .setDescription(`***:white_check_mark: Successfully made a family named ${name}.***`)
-                await interaction.reply({ embeds: [embed], ephemeral: true });
+                await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
 
                 new familySchema({
                     guildId: guild.id,
@@ -86,7 +86,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setColor("Red")
                     .setDescription("***:warning: You're not in a family to execute this command!***")
-                await interaction.reply({ embeds: [embed], ephemeral: true })
+                await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
             } else {
                 try {
                     let familyManagersContent = ""
@@ -141,7 +141,7 @@ module.exports = {
                                         .setColor("Random")
                                         .setTitle(`Members in the family! [${membersSize}]`)
                                         .setDescription(members || "No members.")
-                                    return await interaction.reply({ embeds: [embed], ephemeral: true })
+                                    return await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
                                 }
                             }
                         })
@@ -166,7 +166,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setColor("Red")
                     .setDescription("***Either you're not in a family, or you're not a manager in the family!***")
-                await interaction.reply({ embeds: [embed], ephemeral: true })
+                await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
             }
 
             const button = new ButtonBuilder()

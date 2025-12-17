@@ -48,12 +48,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully set the cousin marriage & engagement toggle as true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await settingSchema.findOneAndUpdate({ cousin: true });
                     }
                 } else if (cousinBoolean == false) {
@@ -61,12 +61,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully set the cousin marriage & engagement toggle as false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await settingSchema.findOneAndUpdate({ cousin: false });
                     }
                 }
@@ -77,12 +77,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully set the sibling marriage & engagement toggle as true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await settingSchema.findOneAndUpdate({ sibling: true });
                     }
                 } else if (siblingBoolean == false) {
@@ -90,12 +90,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully set sibling cousin marriage & engagement toggle as false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await settingSchema.findOneAndUpdate({ sibling: true });
                     }
                 }

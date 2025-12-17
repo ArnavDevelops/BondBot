@@ -21,7 +21,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor('Red')
                 .setDescription("***:warning: you cannot engage with yourself :skull:.***")
-            await interaction.reply({ embeds: [embed], ephemeral: true })
+            await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
         } else {
 
             const FamilyData = await familySchema.findOne({
@@ -44,13 +44,13 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setColor("Red")
                     .setDescription("***:warning: Error using the command. Make sure you and the user are in a family.***")
-                return await interaction.reply({ embeds: [embed], ephemeral: true })
+                return await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
             } else if (UserMainData && mainData) {
                 if (mainData.loveId == user.id || UserMainData.loveId == interaction.user.id) {
                     const embed = new EmbedBuilder()
                         .setColor("Red")
                         .setDescription("***:warning: You or the user are already engaged or married with somebody.***")
-                    return await interaction.reply({ embeds: [embed], ephemeral: true })
+                    return await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
                 }
                 const yes = new ButtonBuilder()
                     .setCustomId("engYes")

@@ -37,7 +37,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor('Red')
                 .setDescription("***:warning you cannot adopt yourself!***")
-            await interaction.reply({ embeds: [embed], ephemeral: true })
+            await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
         } else {
             if (!familyData && AdopterfamilyData) {
                 const yes = new ButtonBuilder()
@@ -100,7 +100,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setColor("Red")
                     .setDescription(`***:warning: Cannot execute this command as either the Adopter doesn't have a family or ${user.user.username} is already in a Family.***`)
-                interaction.reply({ embeds: [embed], ephemeral: true })
+                interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
             }
         }
     }

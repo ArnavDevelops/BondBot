@@ -52,7 +52,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor("Red")
                 .setDescription("***Either you're not in a family, or you're not a manager in the family!***")
-            await interaction.reply({ embeds: [embed], ephemeral: true })
+            await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
         }
 
         if (data) {
@@ -63,12 +63,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully toggled the incest on true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await familySchema.findOneAndUpdate({ incest: true });
                     }
                 } else if (incestBoolean == false) {
@@ -76,12 +76,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully toggled the incest on false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await familySchema.findOneAndUpdate({ incest: false });
                     }
                 }
@@ -92,12 +92,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully toggled engagement on true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await familySchema.findOneAndUpdate({ engagement: true });
                     }
                 } else if (engagementBoolean == false) {
@@ -105,12 +105,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully toggled engagement on false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await familySchema.findOneAndUpdate({ engagement: false });
                     }
                 }
@@ -121,12 +121,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully toggled disown on true.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await familySchema.findOneAndUpdate({ disown: true });
                     }
                 } else if (disownBoolean == false) {
@@ -134,12 +134,12 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The toggle is already on false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
                             .setDescription("***:white_check_mark: Successfully toggled disown on false.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                         return await familySchema.findOneAndUpdate({ disown: false });
                     }
                 }
@@ -150,7 +150,7 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The status is already Liberal.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
@@ -163,7 +163,7 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The status is already Normal.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")
@@ -176,7 +176,7 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setColor("Red")
                             .setDescription("***:warning: The status is already Conservative.***")
-                        await interaction.reply({ embeds: [embed], ephemeral: true });
+                        await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] });
                     } else {
                         const embed = new EmbedBuilder()
                             .setColor("Green")

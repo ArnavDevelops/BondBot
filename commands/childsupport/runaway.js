@@ -22,13 +22,13 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor('Red')
                 .setDescription("***:warning: Error using the command. No data.***")
-            await interaction.reply({ embeds: [embed], ephemeral: true })
+            await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
         } else {
             if (data.ownerId == interaction.user.id) {
                 const embed = new EmbedBuilder()
                     .setColor('Red')
                     .setDescription("***:warning: You're the creator or the owner of the family, you cannot run away!***")
-                await interaction.reply({ embeds: [embed], ephemeral: true })
+                await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
             } else {
                 const yes = new ButtonBuilder()
                     .setCustomId("runawayYes")

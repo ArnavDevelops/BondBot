@@ -12,8 +12,8 @@ module.exports = {
     //Application Commands
 
     if (interaction.isChatInputCommand()) {
-      if(interaction.guild.id == client.guilds.cache.get("1173329837046370354").id) {
-        return await interaction.reply({ content: "Too negro to use this command. Use it once it's officially released", ephemeral: true})
+      if(interaction.guild.id !== client.guilds.cache.get("1421225217807880356").id) {
+        return await interaction.reply({ content: "Can't use this command. Use it once it's officially released", flags: ["Ephemeral"]})
       } else {
         const { commands } = client;
         const { commandName } = interaction;
@@ -23,7 +23,7 @@ module.exports = {
         try {
           await command.execute(interaction, client);
         } catch (error) {
-          await interaction.deferReply({ ephemeral: true });
+          await interaction.deferReply({ flags: ["Ephemeral"] });
           const commandErrorEmbed = new EmbedBuilder()
             .setColor("Red")
             .setDescription(
@@ -31,7 +31,7 @@ module.exports = {
             );
           await interaction.followUp({
             embeds: [commandErrorEmbed],
-            ephemeral: true,
+            flags: ["Ephemeral"],
           });
           console.log(error)
         }
@@ -70,7 +70,7 @@ module.exports = {
           );
         await interaction.reply({
           embeds: [commandErrorEmbed],
-          ephemeral: true,
+          flags: ["Ephemeral"],
         });
       }
     }

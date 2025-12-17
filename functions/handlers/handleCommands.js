@@ -1,8 +1,7 @@
 //Imports
 const { readdirSync } = require("fs");
 require("dotenv").config();
-const { REST } = require("discord.js");
-const { Routes } = require("discord-api-types/v9");
+const { REST, Routes } = require("discord.js");
 const { logMessage } = require("../../helpers/logging.js");
 const token = process.env.Token,
   clientId = process.env.clientId;

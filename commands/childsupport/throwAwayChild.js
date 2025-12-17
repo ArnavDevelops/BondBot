@@ -37,19 +37,19 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor("Red")
                 .setDescription("***:warning: Either you or the child doesn't have a family. Couldn't execute the command!***")
-            return await interaction.reply({ embeds: [embed], ephemeral: true })
+            return await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
         } else {
             if (parentFamilyData.disown == false) {
                 const embed = new EmbedBuilder()
                     .setColor('Red')
                     .setDescription("***:warning: you cannot disown a child as your family does not allow disown.***")
-                await interaction.reply({ embeds: [embed], ephemeral: true })
+                await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
             } else {
                 if (user.id == interaction.user.id) {
                     const embed = new EmbedBuilder()
                         .setColor('Red')
                         .setDescription("***:warning you cannot disown yourself!***")
-                    await interaction.reply({ embeds: [embed], ephemeral: true })
+                    await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
                 } else {
                     const yes = new ButtonBuilder()
                         .setCustomId("disownYes")

@@ -5,7 +5,7 @@ require("dotenv").config()
 
 //Ready event
 module.exports = {
-  name: "ready",
+  name: "clientReady",
   once: true,
   /**
   * @param {Client} client

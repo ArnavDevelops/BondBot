@@ -21,7 +21,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor('Red')
                 .setDescription("***:warning: you cannot marry yourself :skull:.***")
-            await interaction.reply({ embeds: [embed], ephemeral: true })
+            await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
         } else {
 
             const FamilyData = await familySchema.findOne({
@@ -50,7 +50,7 @@ module.exports = {
                     const embed = new EmbedBuilder()
                         .setColor("Red")
                         .setDescription("***:warning: You or the user are already engaged or married with somebody.***")
-                    return await interaction.reply({ embeds: [embed], ephemeral: true })
+                    return await interaction.reply({ embeds: [embed], flags: ["Ephemeral"] })
                 }
                 const yes = new ButtonBuilder()
                     .setCustomId("marryYes")
